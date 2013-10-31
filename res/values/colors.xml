@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!-- Own Colors -->
+
+	<color name="jobcklick_blue">#60ABF6</color>
+    <color name="button_top">#60ABF6</color>
+    <color name="button_bottom">#146FBD</color>
+   	<color name="Transparent">#00000000</color>
+
+<!-- x11 Colors -->
+
+	 <color name="White">#FFFFFF</color>
+	 <color name="Gray">#808080</color>
+	 <color name="Black">#000000</color>
+
+</resources>

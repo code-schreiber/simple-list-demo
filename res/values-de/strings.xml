@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+   	<!-- =========== Language: German ============ -->
+
+    
+	<!-- =============================== -->
+	<!--           App strings           -->
+	<!-- =============================== -->
+
+	
+
+	<!-- =============================== -->
+	<!--    Activity Specific strings    -->
+	<!-- =============================== -->
+
+
+	<!--    Splash Activity    -->
+
+	<string name="Version_Format">Version: %s</string>
+		
+	<!--    Home Activity    -->
+	
+	<string name="new_task_hint">Neuen Task erstellen</string>
+	<string name="tasks">Tasks</string>
+	<string name="noTextWarning">Bitte geben Sie etwas ein</string>
+	<string name="erase_task">Task löschen</string>
+
+	<plurals name="numberOfTasks">
+        <item quantity="one">%d Task</item>
+        <item quantity="few">%d Tasks</item>
+        <item quantity="other">%d Tasks</item>
+    </plurals>
+	
+</resources>

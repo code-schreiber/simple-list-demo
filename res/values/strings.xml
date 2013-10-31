@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    
+    <!-- =========== Main language: English ============ -->
+
+	<!-- =============================== -->
+	<!--           App strings           -->
+	<!-- =============================== -->
+
+	<string name="app_name" translatable="false">Simple List Demo</string>
+	
+	<!-- =============================== -->
+	<!--    Activity Specific strings    -->
+	<!-- =============================== -->
+
+	<!--    Splash Activity    -->
+	
+	<string name="DevelopedBy" translatable="false">Simple List Demo - by Sebastian Guillen</string>
+	<string name="Version_Format">Version: %s</string>
+		
+	<!--    Home Activity    -->
+	
+	<string name="new_task_hint">Create a new task</string>
+	<string name="tasks">Tasks</string>
+	<string name="add" translatable="false">+</string>
+	<string name="noTextWarning">Please enter some text first</string>
+	<string name="erase_task">Delete this task</string>
+
+	<plurals name="numberOfTasks">
+        <item quantity="one">%d Task</item>
+        <item quantity="few">%d Tasks</item>
+        <item quantity="other">%d Tasks</item>
+    </plurals>
+	
+</resources>
