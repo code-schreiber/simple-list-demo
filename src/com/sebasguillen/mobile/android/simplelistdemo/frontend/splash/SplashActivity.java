@@ -25,7 +25,7 @@ import com.sebasguillen.mobile.android.simplelistdemo.frontend.home.HomeActivity
 public class SplashActivity extends Activity {
 
 	private static final String TAG = SplashActivity.class.getSimpleName();
-	private static final int SPLASH_TIME_IN_SECONDS = 2;//FIXME
+	private static final int SPLASH_TIME_IN_SECONDS = 1;
 	private Thread splashThread;
 
 	@Override

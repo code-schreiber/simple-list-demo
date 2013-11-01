@@ -1,5 +1,9 @@
 package com.sebasguillen.mobile.android.simplelistdemo.backend.data;
-//TODO javadoc
+
+/**
+ * Getters and setters for the task object
+ * @author Sebastian Guillen
+ */
 public class Task {
 
 	private int id;

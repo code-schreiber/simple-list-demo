@@ -1,8 +1,5 @@
 package com.sebasguillen.mobile.android.simplelistdemo.frontend;
 
-import com.sebasguillen.mobile.android.simplelistdemo.R;
-import com.sebasguillen.mobile.android.simplelistdemo.R.drawable;
-
 import android.R.style;
 import android.app.Activity;
 import android.content.Context;
@@ -19,6 +16,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TableLayout;
+
+import com.sebasguillen.mobile.android.simplelistdemo.R;
 
 
 /**
