@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CursorAdapter;
 
 import com.sebasguillen.mobile.android.simplelistdemo.R;
-import com.sebasguillen.mobile.android.simplelistdemo.backend.dao.DAO;
+import com.sebasguillen.mobile.android.simplelistdemo.backend.sql.SQLiteHelper;
 
 /**
  * Adapter for tasks
@@ -29,8 +29,8 @@ public class TasksAdapter extends CursorAdapter {
 	public void bindView(View view, Context context, Cursor c) {
 		CheckBox checkBox = (CheckBox) view.findViewById(R.id.task_checkBox);
 		if (checkBox != null) {
-			String title = c.getString(c.getColumnIndexOrThrow(DAO.TASK_COLUMN));
-			String checked = c.getString(c.getColumnIndexOrThrow(DAO.COMPLETED_COLUMN));
+			String title = c.getString(c.getColumnIndexOrThrow(SQLiteHelper.TASK_COLUMN));
+			String checked = c.getString(c.getColumnIndexOrThrow(SQLiteHelper.COMPLETED_COLUMN));
 			checkBox.setText(title);
 			checkBox.setChecked(Boolean.valueOf(checked));
 		}

@@ -14,22 +14,17 @@ import com.sebasguillen.mobile.android.simplelistdemo.backend.sql.SQLiteHelper;
 /**
  * The Data Access Object.
  * Respecting the single responsibility principle.
+ * @author Sebastian Guillen
  */
 public class DAO {
 
 	private static final String TAG = DAO.class.getSimpleName();
 
-	public static final String TABLE_NAME = "TasksTable";
-
-	//Columnns
-	public static final String TASK_COLUMN = "task";
-	public static final String COMPLETED_COLUMN = "completed";
-	public static final String _ID = "_id";
-
-
 	private static final String EQUALS = " = ";
 
-	private static final String[] ALL_TABLE_COLUMNS = new String[] {_ID,TASK_COLUMN,COMPLETED_COLUMN};
+	private static final String[] ALL_TABLE_COLUMNS = new String[] {
+		SQLiteHelper._ID, SQLiteHelper.TASK_COLUMN,
+		SQLiteHelper.COMPLETED_COLUMN };
 
 	private SQLiteDatabase db;
 	private SQLiteHelper helper;
@@ -39,7 +34,7 @@ public class DAO {
 		db = helper.getWritableDatabase();
 	}
 
-	// Close the db
+	// Close the database
 	public void close() {
 		db.close();
 	}
@@ -50,10 +45,10 @@ public class DAO {
 	 */
 	public void createTask(String taskText) {
 		ContentValues values = new ContentValues();
-		values.put(TASK_COLUMN, taskText);
-		values.put(COMPLETED_COLUMN, "false");
+		values.put(SQLiteHelper.TASK_COLUMN, taskText);
+		values.put(SQLiteHelper.COMPLETED_COLUMN, "false");
 		// Insert into DB
-		db.insert(TABLE_NAME, null, values);
+		db.insert(SQLiteHelper.TABLE_NAME, null, values);
 	}
 
 	/**
@@ -61,7 +56,7 @@ public class DAO {
 	 * @param id the id of the task
 	 */
 	public void deleteTask(int id) {
-		db.delete(TABLE_NAME, _ID + EQUALS + id, null);
+		db.delete(SQLiteHelper.TABLE_NAME, SQLiteHelper._ID + EQUALS + id, null);
 	}
 
 	/**
@@ -71,36 +66,9 @@ public class DAO {
 	 */
 	public void updateTask(int id, boolean complete) {
 		ContentValues values = new ContentValues();
-		values.put(COMPLETED_COLUMN, Boolean.toString(complete));
-		String whereClause = _ID + EQUALS + id;
-		db.update(TABLE_NAME, values, whereClause , null);
-	}
-
-	/**
-	 * @return all tasks in the database
-	 */
-	public List<Task> getTasks() {
-		List<Task> tasksList = new ArrayList<Task>();
-
-		// Query the database
-		Cursor cursor = getcursor();
-		cursor.moveToFirst();
-
-		// Iterate the results
-		while (!cursor.isAfterLast()) {
-			Task task = new Task();
-			// Take values from the DB
-			task.setId(cursor.getInt(0));
-			task.setText(cursor.getString(1));
-
-			// Add to the list
-			tasksList.add(task);
-
-			// Move to the next result
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return tasksList;
+		values.put(SQLiteHelper.COMPLETED_COLUMN, Boolean.toString(complete));
+		String whereClause = SQLiteHelper._ID + EQUALS + id;
+		db.update(SQLiteHelper.TABLE_NAME, values, whereClause , null);
 	}
 
 	/**
@@ -134,8 +102,8 @@ public class DAO {
 	 * @return the cursor (last added tasks first, completed tasks last)
 	 */
 	public Cursor getcursor() {
-		String orderBy = COMPLETED_COLUMN+","+_ID + " DESC";
-		Cursor cursor = db.query(TABLE_NAME, ALL_TABLE_COLUMNS, null, null, null, null, orderBy);
+		String orderBy = SQLiteHelper.COMPLETED_COLUMN+","+SQLiteHelper._ID + " DESC";
+		Cursor cursor = db.query(SQLiteHelper.TABLE_NAME, ALL_TABLE_COLUMNS, null, null, null, null, orderBy);
 		return cursor;
 	}
 
