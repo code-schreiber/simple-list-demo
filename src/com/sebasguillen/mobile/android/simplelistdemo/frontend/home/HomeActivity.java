@@ -1,6 +1,7 @@
 package com.sebasguillen.mobile.android.simplelistdemo.frontend.home;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
@@ -62,16 +63,6 @@ public class HomeActivity extends Activity{
 		super.onResume();
 	}
 
-	/**
-	 * Note: Better suggestions would make this app nicer.
-	 * @return an adapter all tasks as suggestions
-	 */
-	private ArrayAdapter<String> getSuggestionsAdapter() {
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-		adapter.addAll(dao.getTasksNames());
-		return adapter;
-	}
-
 	@Override
 	public void onBackPressed() {
 		exitApp();
@@ -92,6 +83,14 @@ public class HomeActivity extends Activity{
 		this.taskCount.setEnabled(false);
 		updateTasksNumber();
 		return super.onCreateOptionsMenu(menu);
+	}
+
+	private void initSearchField() {
+		newTaskfield = (AutoCompleteTextView) findViewById(R.id.searchfield);
+		//Suggest after first character
+		newTaskfield.setThreshold(1);
+		newTaskfield.setOnEditorActionListener(getOnEditListener());
+		newTaskfield.addTextChangedListener(getTextWatcher());
 	}
 
 	private void initButtons() {
@@ -145,20 +144,54 @@ public class HomeActivity extends Activity{
 	}
 
 
+	/**
+	 * Note: Better suggestions would make this app nicer.
+	 * @return an adapter with all tasks as suggestions
+	 */
+	private ArrayAdapter<String> getSuggestionsAdapter() {
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+		adapter.addAll(dao.getTasksNames());
+		return adapter;
+	}
+
 	private void showTooltip(final View v, final int id) {
-		final MyPopup popupy = new MyPopup(v,HomeActivity.this);
+		final MyPopup popup = new MyPopup(v,HomeActivity.this);
 		Button b = new Button(this);
+		b.setText(getString(R.string.Share));
+		b.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				// Share the task
+				shareTask(v);
+				popup.dismiss();
+			}
+		});
+		popup.addButton(b);
+		b = new Button(this);
 		b.setText(getString(R.string.erase_task));
 		b.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				// Delete task from the database
 				removeTaskFromDB(id);
-				popupy.dismiss();
+				popup.dismiss();
 			}
 		});
-		popupy.addButton(b);
-		popupy.showPopup();
+		popup.addButton(b);
+		popup.showPopup();
+	}
+
+	/** Share the task
+	 * @param v the tasks view
+	 */
+	private void shareTask(View v) {
+		//Get the text from the view
+		String taskText = ((TextView) ((RelativeLayout)v).getChildAt(0)).getText().toString();
+		String textToShare = getString(R.string.SharingText) + " \"" + taskText + "\"";
+		Intent i = new Intent(Intent.ACTION_SEND);
+		i.setType("text/plain");
+		i.putExtra(Intent.EXTRA_TEXT, textToShare);
+		startActivity(Intent.createChooser(i, getString(R.string.Share)));
 	}
 
 	private void updateTasksNumber() {
@@ -168,14 +201,6 @@ public class HomeActivity extends Activity{
 		String jobsFoundString;
 		jobsFoundString = res.getQuantityString(R.plurals.numberOfTasks, nrOfTasks, nrOfTasks);
 		this.taskCount.setTitle(jobsFoundString);
-	}
-
-	private void initSearchField() {
-		newTaskfield = (AutoCompleteTextView) findViewById(R.id.searchfield);
-		//Suggest after first character
-		newTaskfield.setThreshold(1);
-		newTaskfield.setOnEditorActionListener(getOnEditListener());
-		newTaskfield.addTextChangedListener(getTextWatcher());
 	}
 
 	private OnEditorActionListener getOnEditListener() {
