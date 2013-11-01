@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+   	<!-- =========== Language: Spanish ============ -->
+
+    
+	<!-- =============================== -->
+	<!--           App strings           -->
+	<!-- =============================== -->
+
+	
+
+	<!-- =============================== -->
+	<!--    Activity Specific strings    -->
+	<!-- =============================== -->
+
+
+	<!--    Splash Activity    -->
+
+	<string name="Version_Format">Versión: %s</string>
+		
+	<!--    Home Activity    -->
+	
+	<string name="new_task_hint">Crea una nueva tarea</string>
+	<string name="tasks">Tareas</string>
+	<string name="noTextWarning">No has escrito todavía</string>
+	<string name="erase_task">Borrar Tarea</string>
+	<string name="Share">Compartir</string>
+	<string name="SharingText">Hola, quisiera compartir esta tarea contigo: </string>
+
+	<plurals name="numberOfTasks">
+        <item quantity="one">%d Tarea</item>
+        <item quantity="few">%d Tareas</item>
+        <item quantity="other">%d Tareas</item>
+    </plurals>
+	
+</resources>

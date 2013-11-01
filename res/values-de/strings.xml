@@ -25,6 +25,8 @@
 	<string name="tasks">Tasks</string>
 	<string name="noTextWarning">Bitte geben Sie etwas ein</string>
 	<string name="erase_task">Task löschen</string>
+	<string name="Share">Teilen</string>
+	<string name="SharingText">Hi, ich würde gerne diesen Task mit dir teilen: </string>
 
 	<plurals name="numberOfTasks">
         <item quantity="one">%d Task</item>

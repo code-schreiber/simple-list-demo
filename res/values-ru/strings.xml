@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+   	<!-- =========== Language: Russian ============ -->
+
+    
+	<!-- =============================== -->
+	<!--           App strings           -->
+	<!-- =============================== -->
+
+	
+
+	<!-- =============================== -->
+	<!--    Activity Specific strings    -->
+	<!-- =============================== -->
+
+
+	<!--    Splash Activity    -->
+
+	<string name="Version_Format">Версия: %s</string>
+		
+	<!--    Home Activity    -->
+	
+	<string name="new_task_hint">введите новое задание</string>
+	<string name="tasks">задания</string>
+	<string name="noTextWarning">пожалуйста, введите текст</string>
+	<string name="erase_task">удалить</string>
+	<string name="Share">поделиться</string>
+	<string name="SharingText">Привет, я хочу поделиться с тобой одним заданием: </string>
+
+	<plurals name="numberOfTasks">
+        <item quantity="one">%d задание</item>
+        <item quantity="few">%d задания</item>
+        <item quantity="other">%d заданий</item>
+    </plurals>
+	
+</resources>
