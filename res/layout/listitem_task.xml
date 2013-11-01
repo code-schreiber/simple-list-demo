@@ -11,7 +11,10 @@
         android:clickable="false"
         android:ellipsize="end"
         android:focusable="false"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         android:singleLine="true"
+        android:textSize="18dp"
         android:textStyle="bold" />
 
 </RelativeLayout>
