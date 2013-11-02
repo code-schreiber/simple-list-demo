@@ -86,7 +86,7 @@ public class HomeActivity extends Activity{
 	}
 
 	private void initSearchField() {
-		newTaskfield = (AutoCompleteTextView) findViewById(R.id.searchfield);
+		newTaskfield = (AutoCompleteTextView) findViewById(R.id.addTask_AutoCompleteTextView);
 		//Suggest after first character
 		newTaskfield.setThreshold(1);
 		newTaskfield.setOnEditorActionListener(getOnEditListener());
@@ -101,7 +101,7 @@ public class HomeActivity extends Activity{
 				tryToAddTask();
 			}
 		});
-		b = (Button) findViewById(R.id.clearSearch_Button);
+		b = (Button) findViewById(R.id.clearText_Button);
 		b.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -207,7 +207,7 @@ public class HomeActivity extends Activity{
 		return new TextView.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+				if (actionId == EditorInfo.IME_ACTION_GO) {
 					//NOTE: not all keyboards support this
 					tryToAddTask();
 					return true;
@@ -223,7 +223,7 @@ public class HomeActivity extends Activity{
 	}
 
 	private TextWatcher getTextWatcher() {
-		final Button clearButton = ((Button) findViewById(R.id.clearSearch_Button));
+		final Button clearButton = ((Button) findViewById(R.id.clearText_Button));
 		final Button saveButton = ((Button) findViewById(R.id.SearchButton));
 		clearButton.setVisibility(View.GONE);
 		return new TextWatcher() {

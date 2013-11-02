@@ -20,19 +20,19 @@
             android:padding="5dp" >
 
             <AutoCompleteTextView
-                android:id="@+id/searchfield"
+                android:id="@+id/addTask_AutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_vertical"
                 android:hint="@string/new_task_hint"
-                android:imeOptions="actionSearch"
+                android:imeOptions="actionGo"
                 android:paddingRight="50dp"
                 android:paddingTop="20dp"
                 android:singleLine="true" >
             </AutoCompleteTextView>
 
             <Button
-                android:id="@+id/clearSearch_Button"
+                android:id="@+id/clearText_Button"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="right|bottom"
