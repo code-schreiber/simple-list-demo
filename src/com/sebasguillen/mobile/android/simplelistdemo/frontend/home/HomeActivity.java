@@ -119,8 +119,12 @@ public class HomeActivity extends Activity{
 		TasksAdapter adapter = new TasksAdapter(this, dao.getcursor(), 0);
 		ListView taskList = (ListView) findViewById(R.id.tasks_listview);
 		taskList.setAdapter(adapter);
+		taskList.setOnItemClickListener(getListClickListener());
+		taskList.setOnItemLongClickListener(getListLongClickListener());
+	}
 
-		taskList.setOnItemClickListener(new OnItemClickListener() {
+	private OnItemClickListener getListClickListener() {
+		return new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				CheckBox checkBox = (CheckBox) ((RelativeLayout)v).getChildAt(0);
@@ -133,17 +137,18 @@ public class HomeActivity extends Activity{
 				checkBox.setChecked(complete);
 				updateTask(id, complete);
 			}
-		});
+		};
+	}
 
-		taskList.setOnItemLongClickListener(new OnItemLongClickListener() {
+	private OnItemLongClickListener getListLongClickListener() {
+		return new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View v, int position, long id) {
 				showTooltip(v, (int) id);
 				return true;
 			}
-		});
+		};
 	}
-
 
 	/**
 	 * Note: Better suggestions would make this app nicer.
