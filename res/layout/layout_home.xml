@@ -72,14 +72,43 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/firstTimeUse_LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:background="@drawable/details_rounded_corners"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:background="@android:drawable/arrow_up_float"
+            android:padding="5dip" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/new_task_hint"
+            android:textSize="25dip"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/details_rounded_corners" >
 
         <ListView
             android:id="@+id/tasks_listview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:paddingBottom="9dp" >
         </ListView>
     </LinearLayout>
 

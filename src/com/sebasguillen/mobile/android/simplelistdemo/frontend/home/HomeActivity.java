@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -115,7 +116,6 @@ public class HomeActivity extends Activity{
 
 	private void initList(){
 		dao = new DAO(this);
-
 		TasksAdapter adapter = new TasksAdapter(this, dao.getcursor(), 0);
 		ListView taskList = (ListView) findViewById(R.id.tasks_listview);
 		taskList.setAdapter(adapter);
@@ -134,6 +134,7 @@ public class HomeActivity extends Activity{
 				updateTask(id, complete);
 			}
 		});
+
 		taskList.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View v, int position, long id) {
@@ -201,6 +202,23 @@ public class HomeActivity extends Activity{
 		String jobsFoundString;
 		jobsFoundString = res.getQuantityString(R.plurals.numberOfTasks, nrOfTasks, nrOfTasks);
 		this.taskCount.setTitle(jobsFoundString);
+		toggleHelpView(nrOfTasks);
+	}
+
+	/**
+	 * Changes the list view to a help view when there are no tasks.
+	 * For example on first time use or when having deleted all tasks
+	 * @param nrOfTasks how many tasks there are.
+	 */
+	private void toggleHelpView(int nrOfTasks) {
+		int firstTimeVisibility = View.GONE;
+		int listViewVisibility = View.VISIBLE;
+		if(nrOfTasks == 0){
+			firstTimeVisibility = View.VISIBLE;
+			listViewVisibility = View.GONE;
+		}
+		((LinearLayout)findViewById(R.id.tasks_listview).getParent()).setVisibility(listViewVisibility);
+		findViewById(R.id.firstTimeUse_LinearLayout).setVisibility(firstTimeVisibility);
 	}
 
 	private OnEditorActionListener getOnEditListener() {
