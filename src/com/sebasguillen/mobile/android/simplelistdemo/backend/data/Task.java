@@ -8,6 +8,7 @@ public class Task {
 
 	private int id;
 	private String text;
+	private boolean completed;
 
 	public int getId() {
 		return id;
@@ -23,6 +24,14 @@ public class Task {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public boolean getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
 	}
 
 }
