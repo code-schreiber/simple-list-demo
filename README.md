@@ -17,6 +17,7 @@ This can be done with the tasks:
  * Share tasks
  * Mark them as completed
  * Undo that last one (uncheck tasks)
+ * Tap links in a task (url, email address, phone number)
  * Delete tasks (long press)
  * Delete all completed tasks at once
  * Get suggestions when entering a new task
