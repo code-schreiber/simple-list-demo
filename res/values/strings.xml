@@ -25,7 +25,8 @@
 	<string name="add" translatable="false">+</string>
 	<string name="noTextWarning">Please enter some text first</string>
 	<string name="Edit">Edit</string>
-	<string name="erase_task">Delete this task</string>
+	<string name="Edit_task">Edit task</string>
+	<string name="erase_task">Delete task</string>
 	<string name="Share">Share</string>
 	<string name="SharingText">Hi, I would like to share this task with you: </string>
 	<plurals name="numberOfTasks">

@@ -8,12 +8,9 @@
 	<!--           App strings           -->
 	<!-- =============================== -->
 
-	
-
 	<!-- =============================== -->
 	<!--    Activity Specific strings    -->
 	<!-- =============================== -->
-
 
 	<!--    Splash Activity    -->
 
@@ -21,17 +18,19 @@
 		
 	<!--    Home Activity    -->
 	
-	<string name="new_task_hint">введите новое задание</string>
-	<string name="tasks">задания</string>
-	<string name="noTextWarning">пожалуйста, введите текст</string>
-	<string name="erase_task">удалить</string>
-	<string name="Share">поделиться</string>
+	<string name="new_task_hint">Введите новое задание</string>
+	<string name="tasks">Задания</string>
+	<string name="noTextWarning">Пожалуйста, введите текст</string>
+	<string name="Edit">Редактировать</string>
+	<string name="Edit_task">Редактировать задание</string>
+	<string name="erase_task">Удалить</string>
+	<string name="Share">Поделиться</string>
 	<string name="SharingText">Привет, я хочу поделиться с тобой одним заданием: </string>
 
 	<plurals name="numberOfTasks">
-        <item quantity="one">%d задание</item>
-        <item quantity="few">%d задания</item>
-        <item quantity="other">%d заданий</item>
+        <item quantity="one">%d Задание</item>
+        <item quantity="few">%d Задания</item>
+        <item quantity="other">%d Заданий</item>
     </plurals>
-	
+
 </resources>
