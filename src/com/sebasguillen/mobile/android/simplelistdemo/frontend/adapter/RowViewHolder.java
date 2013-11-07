@@ -1,10 +1,11 @@
-package com.sebasguillen.mobile.android.simplelistdemo.frontend;
+package com.sebasguillen.mobile.android.simplelistdemo.frontend.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.util.Linkify;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.sebasguillen.mobile.android.simplelistdemo.R;
 import com.sebasguillen.mobile.android.simplelistdemo.backend.dao.DAO;
 import com.sebasguillen.mobile.android.simplelistdemo.backend.data.Task;
+import com.sebasguillen.mobile.android.simplelistdemo.frontend.MyPopup;
 
 /**
  * View Holder Pattern: This is approximate 15 % faster than using findViewById().
@@ -93,10 +95,13 @@ class RowViewHolder {
 		RowViewHolder.this.expanded = !RowViewHolder.this.expanded;
 		holder.textView.setSingleLine(!holder.expanded);
 		// Show or hide edit task button's visibility
+		// Make or remove links
 		if (holder.expanded) {
 			holder.editText.setVisibility(View.VISIBLE);
+			Linkify.addLinks(holder.textView, Linkify.ALL);
 		} else {
 			holder.editText.setVisibility(View.GONE);
+			holder.textView.setText(holder.textView.getText().toString());
 		}
 	}
 
@@ -143,7 +148,7 @@ class RowViewHolder {
 		final EditText input = new EditText(c);
 		input.setText(new DAO(v.getContext()).getTask(taskId).getText());
 		new AlertDialog.Builder(c)
-		.setTitle(c.getString(R.string.Edit))
+		.setTitle(c.getString(R.string.Edit_task))
 		.setView(input)
 		.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 			@Override

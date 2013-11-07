@@ -1,4 +1,4 @@
-package com.sebasguillen.mobile.android.simplelistdemo.frontend;
+package com.sebasguillen.mobile.android.simplelistdemo.frontend.adapter;
 
 import android.content.Context;
 import android.database.Cursor;

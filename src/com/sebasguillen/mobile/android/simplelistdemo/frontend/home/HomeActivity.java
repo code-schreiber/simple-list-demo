@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import com.sebasguillen.mobile.android.simplelistdemo.R;
 import com.sebasguillen.mobile.android.simplelistdemo.backend.dao.DAO;
-import com.sebasguillen.mobile.android.simplelistdemo.frontend.TasksAdapter;
+import com.sebasguillen.mobile.android.simplelistdemo.frontend.adapter.TasksAdapter;
 
 /**
  * Main activity which shows the list and its elements
