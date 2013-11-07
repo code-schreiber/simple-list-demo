@@ -10,6 +10,7 @@ public class TaskTest extends TestCase {
 
 	private static final int ID = 1;
 	private static final String TEXT = "text";
+	private static final boolean COMPLETED = true;
 
 	/**
 	 * Test method for {@link com.sebasguillen.mobile.android.simplelistdemo.backend.data.Task#getId()}.
@@ -49,4 +50,22 @@ public class TaskTest extends TestCase {
 		assertEquals(TEXT, task.getText());
 	}
 
+	/**
+	 * Test method for {@link com.sebasguillen.mobile.android.simplelistdemo.backend.data.Task#getCompleted()}.
+	 */
+	public void testGetCompleted() {
+		Task task = new Task();
+		assertFalse(task.getCompleted());
+		task.setCompleted(COMPLETED);
+		assertEquals(COMPLETED, task.getCompleted());
+	}
+
+	/**
+	 * Test method for {@link com.sebasguillen.mobile.android.simplelistdemo.backend.data.Task#setCompleted(boolean))}.
+	 */
+	public void testSetCompleted() {
+		Task task = new Task();
+		task.setCompleted(COMPLETED);
+		assertEquals(COMPLETED, task.getCompleted());
+	}
 }
