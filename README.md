@@ -13,6 +13,7 @@ The reason API 8, 9 and 10 are not supported are the important changes that wher
 The app manages a single list of tasks
 What can be done with the tasks:
  * Create tasks
+ * Edit tasks
  * Share tasks
  * Mark them as completed
  * Undo that last one (uncheck tasks)
