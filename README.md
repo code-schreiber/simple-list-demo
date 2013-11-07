@@ -18,6 +18,7 @@ This can be done with the tasks:
  * Mark them as completed
  * Undo that last one (uncheck tasks)
  * Delete tasks (long press)
+ * Delete all completed tasks at once
  * Get suggestions when entering a new task
  * Display how many tasks exist
  * Reorder them (not implemented yet, but they are automatically ordered from newest to oldest and uncompleted to completed)
