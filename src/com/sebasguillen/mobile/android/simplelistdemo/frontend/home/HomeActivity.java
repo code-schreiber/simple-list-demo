@@ -1,8 +1,8 @@
 package com.sebasguillen.mobile.android.simplelistdemo.frontend.home;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Resources;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,23 +15,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.sebasguillen.mobile.android.simplelistdemo.R;
 import com.sebasguillen.mobile.android.simplelistdemo.backend.dao.DAO;
-import com.sebasguillen.mobile.android.simplelistdemo.frontend.MyPopup;
 import com.sebasguillen.mobile.android.simplelistdemo.frontend.TasksAdapter;
 
 /**
@@ -117,37 +111,15 @@ public class HomeActivity extends Activity{
 	private void initList(){
 		dao = new DAO(this);
 		TasksAdapter adapter = new TasksAdapter(this, dao.getcursor(), 0);
-		ListView taskList = (ListView) findViewById(R.id.tasks_listview);
+		final ListView taskList = (ListView) findViewById(R.id.tasks_listview);
 		taskList.setAdapter(adapter);
-		taskList.setOnItemClickListener(getListClickListener());
-		taskList.setOnItemLongClickListener(getListLongClickListener());
-	}
-
-	private OnItemClickListener getListClickListener() {
-		return new OnItemClickListener() {
+		adapter.registerDataSetObserver(new DataSetObserver() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				CheckBox checkBox = (CheckBox) ((RelativeLayout)v).getChildAt(0);
-				boolean complete;
-				if(checkBox.isChecked()){
-					complete = false;
-				}else{
-					complete = true;
-				}
-				checkBox.setChecked(complete);
-				updateTask(id, complete);
+			public void onChanged() {
+				super.onChanged();
+				updateTasksNumber();
 			}
-		};
-	}
-
-	private OnItemLongClickListener getListLongClickListener() {
-		return new OnItemLongClickListener() {
-			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View v, int position, long id) {
-				showTooltip(v, (int) id);
-				return true;
-			}
-		};
+		});
 	}
 
 	/**
@@ -158,46 +130,6 @@ public class HomeActivity extends Activity{
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 		adapter.addAll(dao.getTasksNames());
 		return adapter;
-	}
-
-	private void showTooltip(final View v, final int id) {
-		final MyPopup popup = new MyPopup(v,HomeActivity.this);
-		Button b = new Button(this);
-		b.setText(getString(R.string.Share));
-		b.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				// Share the task
-				shareTask(v);
-				popup.dismiss();
-			}
-		});
-		popup.addButton(b);
-		b = new Button(this);
-		b.setText(getString(R.string.erase_task));
-		b.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				// Delete task from the database
-				removeTaskFromDB(id);
-				popup.dismiss();
-			}
-		});
-		popup.addButton(b);
-		popup.showPopup();
-	}
-
-	/** Share the task
-	 * @param v the tasks view
-	 */
-	private void shareTask(View v) {
-		//Get the text from the view
-		String taskText = ((TextView) ((RelativeLayout)v).getChildAt(0)).getText().toString();
-		String textToShare = getString(R.string.SharingText) + " \"" + taskText + "\"";
-		Intent i = new Intent(Intent.ACTION_SEND);
-		i.setType("text/plain");
-		i.putExtra(Intent.EXTRA_TEXT, textToShare);
-		startActivity(Intent.createChooser(i, getString(R.string.Share)));
 	}
 
 	private void updateTasksNumber() {
@@ -277,7 +209,7 @@ public class HomeActivity extends Activity{
 
 	private void tryToAddTask() {
 		String text = getNewTaskText();
-		//min 1 characters
+		//min 1 character
 		if(text.isEmpty()){
 			Toast t = Toast.makeText(HomeActivity.this, getString(R.string.noTextWarning), Toast.LENGTH_SHORT);
 			//We change the toast's position so it doesn't get over the keyboard, where it is hard to see
@@ -293,8 +225,6 @@ public class HomeActivity extends Activity{
 		hideKeyboard();
 		clearTaskField();
 		addTaskToDB(task);
-		refreshList();
-		updateTasksNumber();
 	}
 
 	private void clearTaskField() {
@@ -303,34 +233,16 @@ public class HomeActivity extends Activity{
 
 	/**
 	 * Persists the new task
-	 * @param task the task
+	 * @param taskText the task's text
 	 */
-	private void addTaskToDB(String task) {
-		dao.createTask(task);
-		refreshList();
-		updateTasksNumber();
-	}
-
-	/**
-	 * Persists the new task
-	 * @param task the task
-	 */
-	private void removeTaskFromDB(int taskID) {
-		dao.deleteTask(taskID);
-		refreshList();
-		updateTasksNumber();
-	}
-
-	/**
-	 * Marks the view as completed or not
-	 */
-	private void updateTask(float taskId, boolean complete) {
-		dao.updateTask((int) taskId, complete);
+	private void addTaskToDB(String taskText) {
+		dao.createTask(taskText);
 		refreshList();
 	}
 
 	/**
-	 * Takes care that the shown list has the same elements as the db
+	 * Takes care that the shown list has the same elements as the db.
+	 * This also triggers updateTasksNumber()
 	 */
 	private void refreshList() {
 		ListView list = (ListView) findViewById(R.id.tasks_listview);
