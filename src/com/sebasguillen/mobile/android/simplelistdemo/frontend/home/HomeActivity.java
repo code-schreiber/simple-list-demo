@@ -80,6 +80,16 @@ public class HomeActivity extends Activity{
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.delete_completed_tasks_option:
+			deleteCompletedTasks();
+			break;
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+
 	private void initSearchField() {
 		newTaskfield = (AutoCompleteTextView) findViewById(R.id.addTask_AutoCompleteTextView);
 		//Suggest after first character
@@ -225,6 +235,11 @@ public class HomeActivity extends Activity{
 		hideKeyboard();
 		clearTaskField();
 		addTaskToDB(task);
+	}
+
+	private void deleteCompletedTasks() {
+		dao.deleteCompletedTasks();
+		refreshList();
 	}
 
 	private void clearTaskField() {

@@ -29,10 +29,14 @@
 	<string name="erase_task">Delete task</string>
 	<string name="Share">Share</string>
 	<string name="SharingText">Hi, I would like to share this task with you: </string>
+	
 	<plurals name="numberOfTasks">
         <item quantity="one">%d Task</item>
         <item quantity="few">%d Tasks</item>
         <item quantity="other">%d Tasks</item>
     </plurals>
+    
+	<string name="erase_completed_tasks">Delete completed tasks</string>
+    
 	
 </resources>

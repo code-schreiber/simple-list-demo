@@ -5,5 +5,11 @@
     android:title="@plurals/numberOfTasks"
     android:text="@plurals/numberOfTasks"
     android:showAsAction="always" />
+   
+    <item android:id="@+id/delete_completed_tasks_option"
+    android:title="@string/erase_completed_tasks"
+    android:text="@string/erase_completed_tasks"
+    android:icon="@android:drawable/ic_delete"
+    android:showAsAction="never" />
   
 </menu>

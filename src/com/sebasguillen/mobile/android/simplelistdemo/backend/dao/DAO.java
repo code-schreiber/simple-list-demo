@@ -66,6 +66,13 @@ public class DAO {
 	}
 
 	/**
+	 * Delete tasks that are marked as complete
+	 */
+	public void deleteCompletedTasks() {
+		db.delete(SQLiteHelper.TABLE_NAME, SQLiteHelper.COMPLETED_COLUMN + EQUALS + "\'true\'", null);
+	}
+
+	/**
 	 * Get the task from db where the id match
 	 * @param id the id of the task
 	 */
