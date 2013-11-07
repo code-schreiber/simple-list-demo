@@ -7,11 +7,11 @@ Persistence is done through SQLite.
 
 # Requisites
 This demo was made for Android 3.0+
-The reason API 8, 9 and 10 are not supported are the important changes that where made with API 11, for example some important methods of database adapters loaded date in the main UI thread, this methods are now deprecated.
+The reason API 8, 9 and 10 are not supported are the important changes that where made with API 11, for example some important methods of database adapters loaded date in the main UI thread, these methods are now deprecated.
 
 # Functions
-The app manages a single list of tasks
-What can be done with the tasks:
+The app manages a single list of tasks. 
+This can be done with the tasks:
  * Create tasks
  * Edit tasks
  * Share tasks
