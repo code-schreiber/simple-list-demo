@@ -35,5 +35,7 @@
         <item quantity="few">%d Tasks</item>
         <item quantity="other">%d Tasks</item>
     </plurals>
+    
+	<string name="erase_completed_tasks">Alle erledigten Tasks löschen</string>
 	
 </resources>

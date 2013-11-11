@@ -32,5 +32,7 @@
         <item quantity="few">%d Задания</item>
         <item quantity="other">%d Заданий</item>
     </plurals>
+    
+	<string name="erase_completed_tasks">Удалить выполненные задания</string>
 
 </resources>
