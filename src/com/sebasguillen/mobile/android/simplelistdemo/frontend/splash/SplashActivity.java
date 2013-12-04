@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sebasguillen.mobile.android.simplelistdemo.R;
+import com.sebasguillen.mobile.android.simplelistdemo.backend.stat.Consts;
 import com.sebasguillen.mobile.android.simplelistdemo.frontend.home.HomeActivity;
 
 /**
@@ -47,13 +48,13 @@ public class SplashActivity extends Activity {
 		String versionCode = getVersionCode(getBaseContext());
 		String format = getString(R.string.Version_Format);
 		String text = String.format(format, versionCode);
-		text += "\n";
+		text += Consts.SINGLE_ENTER;
 		TextView tv = (TextView) findViewById(R.id.SplashText);
 		tv.setText(text + tv.getText());
 	}
 
 	private String getVersionCode(Context c) {
-		String versionCode = "";
+		String versionCode = Consts.EMPTY_STRING;
 		try {
 			PackageInfo pi = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
 			versionCode = pi.versionName;
