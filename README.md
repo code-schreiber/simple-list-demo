@@ -23,6 +23,9 @@ This can be done with the tasks:
  * Get suggestions when entering a new task
  * Display how many tasks exist
  * Reorder them (not implemented yet, but they are automatically ordered from newest to oldest and uncompleted to completed)
+ * Set due date for a task
+ * Receive notification on due date
+ * Expand notification and mark task as complete
 
 # Languages supported
  * English
