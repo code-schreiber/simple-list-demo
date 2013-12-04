@@ -26,11 +26,8 @@ public class DAO {
 	private static final String[] ALL_TABLE_COLUMNS = new String[] {
 		SQLiteHelper._ID,
 		SQLiteHelper.TASK_COLUMN,
-		SQLiteHelper.COMPLETED_COLUMN };
-
-	private static final int ID_INDEX = 0;
-	private static final int TASK_COLUMN_INDEX = 1;
-	private static final int COMPLETED_COLUMN_INDEX = 2;
+		SQLiteHelper.COMPLETED_COLUMN,
+		SQLiteHelper.DATE_COLUMN };
 
 	private SQLiteDatabase db;
 	private SQLiteHelper helper;
@@ -81,9 +78,10 @@ public class DAO {
 		Cursor dbTask = db.query(SQLiteHelper.TABLE_NAME, ALL_TABLE_COLUMNS, whereClause, 	null, null, null, null);
 		dbTask.moveToFirst();
 		Task task = new Task();
-		task.setId(dbTask.getInt(ID_INDEX));
-		task.setText(dbTask.getString(TASK_COLUMN_INDEX));
-		task.setCompleted(Boolean.valueOf(dbTask.getString(COMPLETED_COLUMN_INDEX)));
+		task.setId(dbTask.getInt(dbTask.getColumnIndex(SQLiteHelper._ID)));
+		task.setText(dbTask.getString(dbTask.getColumnIndex(SQLiteHelper.TASK_COLUMN)));
+		task.setCompleted(Boolean.valueOf(dbTask.getString(dbTask.getColumnIndex(SQLiteHelper.COMPLETED_COLUMN))));
+		task.setDueDate(dbTask.getLong(dbTask.getColumnIndex(SQLiteHelper.DATE_COLUMN)));
 		dbTask.close();
 		return task;
 	}
@@ -100,13 +98,29 @@ public class DAO {
 	}
 
 	/**
-	 * Changes the text of the give task
+	 * Changes the text of the given task
 	 * @param id the id of the task
 	 * @param newText the text to put in
 	 */
 	public void updateTask(int taskId, String newText) {
 		ContentValues values = new ContentValues();
 		values.put(SQLiteHelper.TASK_COLUMN, newText);
+		updateTask(taskId, values);
+	}
+
+	/**
+	 * Changes the due date of the given task.
+	 * If dueDate is 0 the date will be erased
+	 * @param id the id of the task
+	 * @param date the due date
+	 */
+	public void updateTasksDate(int taskId, long dueDate) {
+		ContentValues values = new ContentValues();
+		if( dueDate == 0 ) {
+			values.putNull(SQLiteHelper.DATE_COLUMN);
+		}else{
+			values.put(SQLiteHelper.DATE_COLUMN, dueDate);
+		}
 		updateTask(taskId, values);
 	}
 
@@ -129,7 +143,7 @@ public class DAO {
 		while (!cursor.isAfterLast()) {
 			Task task = new Task();
 			// Take value from the DB
-			task.setText(cursor.getString(TASK_COLUMN_INDEX));
+			task.setText(cursor.getString(cursor.getColumnIndex(SQLiteHelper.TASK_COLUMN)));
 			// Add to the list
 			tasksList.add(task.getText());
 			// Move to the next result
